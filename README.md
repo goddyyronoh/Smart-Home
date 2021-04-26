@@ -1,0 +1,2 @@
+# Smart-Home
+Smart Home automation system simulation by students studying for masters in IoT ,University of Rwanda under ACEIoT-cohort 3 program.This is done during the smart sensors and actuators module. We have used a MCU to program a few sensors and actuators. The devices connected to the  mcu are motion sensor, water sensor, Lawn sprinkler, Living room door, Living room light and coffee maker. The other devices we have used IF the conditions.
