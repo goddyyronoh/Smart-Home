@@ -1,0 +1,46 @@
+from gpio import * 
+from time import *
+
+motionSensor = 0
+waterSensor =0 
+
+def Sprinkler():
+	print("Sprinkler function")
+	waterSensor = analogRead(0)
+	print(waterSensor)
+	if(waterSensor < 120):
+		customWrite(4,1)
+	else:
+		customWrite(4,0)
+	
+def MotionOnDoor():
+	motionSensor = digitalRead(0)
+	if(motionSensor == HIGH):
+		print("Motion at door open door and start coffee turn on light")
+		customWrite(2,1) #coffeee maker on
+		customWrite(1,(1,0)) #open door and unlock
+		customWrite(3,2) #turn on lamp
+		delay(3000)
+		customWrite(2,0)
+		customWrite(1,(0,1))
+		
+	else:
+		print("No movement leave as is")
+		customWrite(1,(0,1))
+		customWrite(2,0)
+		
+	def main():
+	pinMode(0,IN) # declared motion sensor iput
+	pinMode(1,OUTPUT) #OUTPUT for door
+	pinMode(2,OUTPUT) # Appliance
+	pinMode(3,OUTPUT) # Living room lamp
+	pinMode(4,OUTPUT) # Sprinkler
+
+	print("Starting program")
+	while True:
+		MotionOnDoor()
+		Sprinkler()
+		delay(1000)
+		
+if __name__ == "__main__":
+	main()
